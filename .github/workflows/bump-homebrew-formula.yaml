@@ -16,4 +16,10 @@ jobs:
           VERSION_TAG=$(echo '${{ github.ref }}' | sed 's|refs/tags/||')
           URL="https://github.com/damienpontifex/bump-tap/releases/download/${VERSION_TAG}/main.sh"
           SHA256=$(curl -Lf "${URL}" | shasum -a 256 | head -c 64)
-          brew bump-formula-pr --url=${URL} --sha256=${SHA256} --message="Update bump-tap formula with ${VERSION} release" bump-tap
+          brew bump-formula-pr \
+            --url=${URL} \
+            --sha256=${SHA256} \
+            --message="Update bump-tap formula with ${VERSION} release" \
+            --no-fork \
+            --no-browse \
+            bump-tap
