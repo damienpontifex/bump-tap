@@ -13,7 +13,7 @@ jobs:
         run: |
           brew tap damienpontifex/pontifex
           cd $(brew --repo damienpontifex/pontifex)
-          git remote set-url --push origin "https://damienpontifex:${GITHUB_TOKEN}@github.com/damienpontifex/homebrew-pontifex"
+          git remote set-url --push origin "https://github-actions:${GITHUB_TOKEN}@github.com/damienpontifex/homebrew-pontifex"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Brew bump
