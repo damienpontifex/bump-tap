@@ -10,7 +10,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Tap remote
-        run: brew tap damienpontifex/pontifex
+        run: |
+          brew tap damienpontifex/pontifex
+          cd $(brew --repo damienpontifex/pontifex)
+          git remote set-url --push origin "https://damienpontifex:${GITHUB_TOKEN}@github.com/damienpontifex/homebrew-pontifex"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Brew bump
         run: |
           VERSION_TAG=$(echo '${{ github.ref }}' | sed 's|refs/tags/||')
