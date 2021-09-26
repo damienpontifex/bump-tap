@@ -14,7 +14,7 @@ jobs:
       - name: Brew bump
         run: |
           set -x
-          VERSION_TAG=$(echo '${{ github.ref }}' | sed 's|/refs/tags/||')
+          VERSION_TAG=$(echo '${{ github.ref }}' | sed 's|refs/tags/||')
           VERSION=$(echo "${VERSION_TAG}" | sed 's/v//')
           URL="https://github.com/damienpontifex/bump-tap/releases/download/${VERSION_TAG}/main.sh"
           SHA256=$(curl -Lf "${URL}" | shasum -a 256)
